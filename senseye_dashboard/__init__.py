@@ -34,8 +34,6 @@ def create_app(test_config = None, database = None):
             SQLALCHEMY_TRACK_MODIFICATIONS = False
             )
 
-    print(BASEDIR)
-
     if test_config is None:
         # Load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent = True)

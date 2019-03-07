@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-9">
+            <h1>{{ title }}</h1>
+
+            <div class="card">
+                <div class="card-header">Info</div>
+                <div class="card-body">
+                    Battery icons:
+                    <ul>
+                        <li> <span class="badge badge-secondary">Unknown</span> &ensp; No known value within the last 7 days.
+                        <li> <span class="badge badge-danger">9%</span> &ensp; Less than 10% voltage.
+                        <li> <span class="badge badge-warning">17%</span> &ensp; Less than 25% voltage.
+                        <li> <span class="badge badge-success">54%</span> &ensp; More than 25% voltage.
+                    </ul>
+                </div>
+            </div>
+
+            </br>
+
+            {{ table }}
+
+        </div>
+        <div class = "col-md-3 sidebar-right">
+        <div class = "sidebar">
+            <h3>Summary</h3>
+            {% if number == 1 %}
+            There is currently {{ number }} sensor in the database.
+            {% else %}
+            There are currently {{ number }} sensors in the database.
+            {% endif %}
+
+            </br>
+            <a type="button" class="btn btn-primary btn-sm btn-side" href="{{ url_for('sen.add_sensor') }}">Add new Sensor</a>
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

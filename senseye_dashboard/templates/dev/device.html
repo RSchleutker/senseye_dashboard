@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-9">
+            <h1>{{ title }}</h1>
+
+            <div class="card">
+                <div class="card-header">Info</div>
+                <div class="card-body">
+                    Currently, all measurement values are provided without units since this is easier to implement.
+                    However, temperature is given in °C, humidity is given in %.
+                </div>
+            </div>
+
+            </br>
+
+            {% for part in plots %}
+                    {{ part | safe }}
+            {% endfor %}
+
+        </div>
+        <div class = "col-md-3 sidebar-right">
+        <div class = "sidebar">
+            <h2>Overview</h2>
+
+            <b>ID:</b> {{ device.id }}<br>
+            <b>Type:</b> {{ device.type.capitalize() }}<br>
+            <b>Group:</b> {{ device.group.capitalize() }}<br>
+            <b>Room:</b> {{ device.room }}</br>
+
+            <a type="button" class="btn btn-primary btn-sm btn-side", href="{{ url_for('dev.edit_device', id=device.id) }}">Edit Device</a>
+
+            <hr>
+
+            <h3>Ranges</h3>
+
+            {% for range in ranges %}
+                <b>{{ range.parameter.capitalize() }}:</b> <a class="badge badge-pill badge-secondary" href="{{ url_for('dev.edit_range', device = range.device, param = range.parameter) }}">Edit</a> <a class="badge badge-pill badge-danger" href="{{ url_for('dev.delete_range', device = range.device, param = range.parameter) }}">Delete</a></br>
+                {{ range.lower }} to {{ range.upper }}
+                <br>
+            {% endfor %}
+
+            <a type="button" class="btn btn-primary btn-sm btn-side", href="{{ url_for('dev.add_range', device=device.id) }}">Add Range</a>
+
+            <hr>
+
+            <h3>Sensors</h3>
+
+            {% for sensor in sensors %}
+                <b>Sensor:</b> {{ sensor.id }} ({{ sensor.battery }}%) <a class="badge badge-pill badge-secondary" href="{{ url_for('sen.edit_sensor', id=sensor.id) }}">Edit</a></br>
+            {% endfor %}
+
+            <a type="button" class="btn btn-primary btn-sm btn-side", href="{{ url_for('sen.sensors') }}">Add Sensor</a>
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

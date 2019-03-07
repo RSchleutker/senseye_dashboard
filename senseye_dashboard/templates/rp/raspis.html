@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-9">
+            <h1>{{ title }}</h1>
+
+            </br>
+
+            {{ table }}
+
+        </div>
+        <div class = "col-md-3 sidebar-right">
+        <div class = "sidebar">
+            <h3>Summary</h3>
+            {% if number == 1 %}
+            There is currently {{ number }} RaspberryPi in the database.
+            {% else %}
+            There are currently {{ number }} RaspberryPis in the database.
+            {% endif %}
+
+            </br>
+            <a type="button" class="btn btn-primary btn-sm btn-side" href="{{ url_for('rp.add_raspi') }}">Add new RaspberryPi</a>
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

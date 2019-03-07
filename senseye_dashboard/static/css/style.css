@@ -1,0 +1,39 @@
+body {
+
+    background: #fefefe;
+    color: #4d4d4d;
+
+}
+
+.nav-item.right {
+
+    right: 10px;
+    position: absolute;
+
+}
+
+.card.form {
+
+    text-align: center;
+
+}
+
+.sidebar {
+
+    background: #ebebeb;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+
+.btn-side {
+
+    width: 100%;
+
+}
+
+.sidebar .btn-side {
+
+    margin-top: 10px;
+
+}

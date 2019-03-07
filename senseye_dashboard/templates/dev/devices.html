@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-md-9">
+            <h1>{{ title }}</h1>
+
+            <div class="card">
+                <div class="card-header">Info</div>
+                <div class="card-body">
+                    Below you will find an explanation about the status icons:
+                    <ul>
+                        <li> <span class="badge badge-success">All fine</span> &ensp; Nothing happened within the last 24h.
+                        <li> <span class="badge badge-warning">Attention</span> &ensp; At least one measurement was out of range within the last 24h.
+                        <li> <span class="badge badge-danger">Alert</span> &ensp; At least one measurement was out of range within the last hour.
+                    </ul>
+                    To get more information about each device click on the <button class="btn btn-secondary btn-sm" style="padding-left:20px;padding-right:20px;">Details</button> button on the right.
+                </div>
+            </div>
+
+            </br>
+
+            {{ table }}
+
+        </div>
+        <div class = "col-md-3 sidebar-right">
+        <div class = "sidebar">
+            <h3>Summary</h3>
+            {% if number == 1 %}
+            There is currently {{ number }} device in the database.
+            {% else %}
+            There are currently {{ number }} devices in the database.
+            {% endif %}
+
+            </br>
+            <a type="button" class="btn btn-primary btn-sm btn-side" href="{{ url_for('dev.add_device') }}">Add new Device</a>
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

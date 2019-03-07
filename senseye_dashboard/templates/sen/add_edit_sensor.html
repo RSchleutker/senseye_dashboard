@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<div class="card form">
+    <div class="card-header">
+        <h1>{{ title }}</h1>
+    </div>
+    <div class="card-body">
+
+        <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.mac.label }}<br>
+            {{ form.mac(size=32) }}<br>
+            {% for error in form.mac.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.device.label }}<br>
+            {{ form.device(size=1) }}<br>
+            {% for error in form.device.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.raspi.label }}<br>
+            {{ form.raspi(size=1) }}<br>
+            {% for error in form.raspi.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    </div>
+</div>
+
+{% endblock %}

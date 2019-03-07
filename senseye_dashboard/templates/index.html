@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<div class="card">
+    <div class="card-header">
+        <h1>{{ title }}</h1>
+    </div>
+    <div class="card-body">
+
+        Welcome to the Senseye monitoring system. To get started click on one of the links above:
+
+        <ul>
+            <li> <a href="{{ url_for('sen.sensors') }}">Sensors</a> gives an overview about all sensors and provides opportunities to add and edit such.
+            <li> <a href="{{ url_for('dev.devices') }}">Devices</a> gives an overview about all devices with all measurements of each.
+            <li> <a href="{{ url_for('rp.raspis') }}">RaspberryPis</a> gives an  overview about all RaspberryPis.
+            <li> <a href="{{ url_for('auth.users') }}">Users</a> gives an overview about all users and provides the opportunitiy to add new users.
+        </ul>
+
+    </div>
+</div>
+
+{% endblock %}

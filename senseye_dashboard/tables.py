@@ -96,7 +96,7 @@ class SensorBatteryCol(Col):
                                             Measurement.parameter == 'battery').\
                                      order_by(Measurement.time.desc()).first()
 
-        if not battery or battery.time > datetime.now() - timedelta(days=7):
+        if not battery or battery.time < datetime.now() - timedelta(days=7):
             return '<span class="badge badge-secondary">Unknown</span>'
         elif battery.value < 10:
             return '<span class="badge badge-danger">{}%</span>'.format(battery.value)

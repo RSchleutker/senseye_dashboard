@@ -25,7 +25,6 @@ from werkzeug.security import (
         check_password_hash,
         generate_password_hash
         )
-import pandas as pd
 from bokeh.plotting import figure
 from bokeh.models import (
         BoxAnnotation,

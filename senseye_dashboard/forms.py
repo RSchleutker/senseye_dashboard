@@ -96,3 +96,16 @@ class RangeForm(FlaskForm):
     lower = DecimalField('Lower Limit', validators = [DataRequired()])
     upper = DecimalField('Upper Limit', validators = [DataRequired()])
     submit = SubmitField('Take it')
+
+class UserForm(FlaskForm):
+
+    email = StringField('Email',
+                        validators = [
+                                DataRequired(),
+                                Email()
+                                ])
+    group = SelectField('Group', choices = GROUPS)
+    oldpw = PasswordField('Old Password*')
+    newpw = PasswordField('New Password')
+    newpw2 = PasswordField('Repeat New Password', validators = [EqualTo('newpw')])
+    submit = SubmitField('Take it')

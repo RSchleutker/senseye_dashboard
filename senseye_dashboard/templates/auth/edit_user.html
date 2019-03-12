@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<div class="card form">
+    <div class="card-header">
+        <h1>{{ title }}</h1>
+    </div>
+    <div class="card-body">
+
+        <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}<br>
+            {% for error in form.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.group.label }}<br>
+            {{ form.group(size=1) }}<br>
+            {% for error in form.group.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.oldpw.label }}<br>
+            {{ form.oldpw(size=32) }}<br>
+            {% for error in form.oldpw.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.newpw.label }}<br>
+            {{ form.newpw(size=32) }}<br>
+            {% for error in form.newpw.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.newpw2.label }}<br>
+            {{ form.newpw2(size=32) }}<br>
+            {% for error in form.newpw2.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

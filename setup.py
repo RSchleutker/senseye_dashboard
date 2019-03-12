@@ -12,7 +12,6 @@ setup(
         'flask_login',
         'flask_wtf',
         'flask_table',
-        'pandas',
         'bokeh'
     ],
 )

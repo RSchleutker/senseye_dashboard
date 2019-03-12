@@ -127,6 +127,10 @@ class UserTable(Table):
     username = Col('Username')
     email = Col('Email')
     group = Col('Group')
+    edit = ButtonCol('', 'auth.edit_user',
+                     url_kwargs=dict(username='username'),
+                     button_attrs={'class':'btn btn-secondary btn-sm btn-side'},
+                     text_fallback='Edit')
     delete = ButtonCol('', 'auth.delete_user',
                        url_kwargs=dict(username='username'),
                        button_attrs={'class':'btn btn-danger btn-sm btn-side'},

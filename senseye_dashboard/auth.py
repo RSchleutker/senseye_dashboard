@@ -27,7 +27,8 @@ from werkzeug.security import (
         )
 from .forms import (
         RegistrationForm,
-        LoginForm
+        LoginForm,
+        UserForm
         )
 from .tables import UserTable
 from senseye_dashboard.models import User
@@ -125,3 +126,42 @@ def users():
                            title = 'Users',
                            number = len(usr),
                            table = table)
+
+@bp.route('/users/edit', methods = ('GET', 'POST'))
+@login_required
+def edit_user():
+
+    username = request.args.get('username', None)
+
+    if not current_user.username == username:
+        flash('You can only edit your own profile!')
+        return redirect(url_for('auth.users'))
+
+    user = User.query.get(username)
+    form = UserForm(email = user.email,
+                    group = user.group)
+
+    if form.validate_on_submit():
+
+        if not user.check_password(form.oldpw.data):
+            flash('Wrong password!')
+            return redirect(url_for('auth.edit_user', username = username))
+
+        user.email = form.email.data
+        user.group = form.group.data
+
+        if len(form.newpw.data) > 0:
+            user.set_password(form.newpw.data)
+
+        try:
+            db.session.commit()
+        except Exception as excep:
+            flash(excep)
+            return redirect(url_for('auth.edit_user', username = username))
+        else:
+            flash('Successfully edited user!')
+            return redirect(url_for('auth.users'))
+
+    return render_template('auth/edit_user.html',
+                           title = 'Edit User',
+                           form = form)
